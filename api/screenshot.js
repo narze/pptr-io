@@ -1,5 +1,6 @@
 const puppeteer = require("puppeteer-core")
-const chromium = require("@sparticuz/chromium-min")
+// const chromium = require("@sparticuz/chromium-min")
+const chromium = require("chrome-aws-lambda")
 // const playwright = require("playwright-core")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
@@ -20,29 +21,36 @@ module.exports = async (req, res) => {
       ? screenshotFileType
       : "png"
 
-    // console.log(await chrome.executablePath)
+    const options = process.env.VERCEl_ENV
+      ? {
+          args: chrome.args,
+          executablePath: await chrome.executablePath,
+          headless: chrome.headless,
+        }
+      : {
+          args: [],
+          executablePath:
+            process.platform === "win32"
+              ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+              : process.platform === "linux"
+              ? "/usr/bin/google-chrome"
+              : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        }
+    const browser = await puppeteer.launch(options)
 
+    // Chromium-min
     // const browser = await puppeteer.launch({
-    //   args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-    //   defaultViewport: chrome.defaultViewport,
-    //   executablePath: await chrome.executablePath,
+    //   args: chromium.args,
+    //   // executablePath:
+    //   //   process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
+    //   executablePath: await chromium.executablePath(
+    //     "https://github.com/Sparticuz/chromium/releases/download/v114.0.0/chromium-v114.0.0-pack.tar"
+    //   ),
+    //   headless: chromium.headless,
     //   ignoreHTTPSErrors: true,
+    //   // headless: true,
+    //   // ...more config options
     // })
-
-    console.log(await chromium.executablePath())
-
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      // executablePath:
-      //   process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
-      executablePath: await chromium.executablePath(
-        "https://github.com/Sparticuz/chromium/releases/download/v114.0.0/chromium-v114.0.0-pack.tar"
-      ),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-      // headless: true,
-      // ...more config options
-    })
 
     const page = await browser.newPage()
 

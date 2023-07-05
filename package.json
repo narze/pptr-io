@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@sparticuz/chromium-min": "^114.0.0",
+    "chrome-aws-lambda": "^10.1.0",
     "puppeteer-core": "^20.7.4"
   },
   "name": "pptr-io",
