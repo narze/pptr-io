@@ -1,6 +1,7 @@
-const puppeteer = require("puppeteer-core")
+// const puppeteer = require("puppeteer-core")
 // const chromium = require("@sparticuz/chromium-min")
-const chrome = require("chrome-aws-lambda")
+// const chrome = require("chrome-aws-lambda")
+const chrome = require("@sparticuz/chrome-aws-lambda")
 // const playwright = require("playwright-core")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
@@ -21,7 +22,21 @@ module.exports = async (req, res) => {
       ? screenshotFileType
       : "png"
 
-    const options = process.env.VERCEl_ENV
+    // browser = await chromium.puppeteer.launch({
+    //   args: chromium.args,
+    //   defaultViewport: chromium.defaultViewport,
+    //   executablePath: await chromium.executablePath,
+    //   headless: chromium.headless,
+    //   ignoreHTTPSErrors: true,
+    // })
+
+    // let page = await browser.newPage()
+
+    // await page.goto(event.url || "https://example.com")
+
+    // result = await page.title()
+
+    const options = process.env.VERCEL
       ? {
           args: chrome.args,
           executablePath: await chrome.executablePath,
@@ -36,7 +51,8 @@ module.exports = async (req, res) => {
               ? "/usr/bin/google-chrome"
               : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
         }
-    const browser = await puppeteer.launch(options)
+    const browser = await chrome.puppeteer.launch(options)
+    // const browser = await puppeteer.launch(options)
 
     // Chromium-min
     // const browser = await puppeteer.launch({
