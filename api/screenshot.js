@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer-core")
-const chromium = require("@sparticuz/chromium")
+const chromium = require("@sparticuz/chromium-min")
 // const playwright = require("playwright-core")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
@@ -33,9 +33,14 @@ module.exports = async (req, res) => {
 
     const browser = await puppeteer.launch({
       args: chromium.args,
-      executablePath:
-        process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
-      headless: true,
+      // executablePath:
+      //   process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
+      executablePath: await chromium.executablePath(
+        "https://github.com/Sparticuz/chromium/releases/download/v114.0.0/chromium-v114.0.0-pack.tar"
+      ),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
+      // headless: true,
       // ...more config options
     })
 
