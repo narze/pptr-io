@@ -6,22 +6,22 @@ settings:
 
 dependencies:
   '@sparticuz/chrome-aws-lambda':
-    specifier: 15.5.0
-    version: 15.5.0(puppeteer-core@15.5.0)
+    specifier: 14.4.1
+    version: 14.4.1(puppeteer-core@14.4.1)
   puppeteer-core:
-    specifier: 15.5.0
-    version: 15.5.0
+    specifier: 14.4.1
+    version: 14.4.1
 
 packages:
 
-  /@sparticuz/chrome-aws-lambda@15.5.0(puppeteer-core@15.5.0):
-    resolution: {integrity: sha512-TT3Q6ui6whXuPczOWISIuyoYHhG7WsTSicVJZ6x37sQb3+H++rCGKeQVmoYzWr+54g4ryfg5X2gBSweXRI8GMw==}
+  /@sparticuz/chrome-aws-lambda@14.4.1(puppeteer-core@14.4.1):
+    resolution: {integrity: sha512-ezjpygHP96svvtQsmYNquFM/9oL42aLsNVy6Qz4Yxsb0udLBEKwOfrdmVV3iSsOa0pPhBgQwU7OPHTWPKIb07g==}
     engines: {node: '>= 14'}
     deprecated: '@sparticuz/chrome-aws-lambda is deprecated. Please migrate to @sparticuz/chromium'
     peerDependencies:
-      puppeteer-core: 15.5.0
+      puppeteer-core: 14.4.1
     dependencies:
-      puppeteer-core: 15.5.0
+      puppeteer-core: 14.4.1
       tar-fs: 2.1.1
     dev: false
 
@@ -109,8 +109,8 @@ packages:
       ms: 2.1.2
     dev: false
 
-  /devtools-protocol@0.0.1019158:
-    resolution: {integrity: sha512-wvq+KscQ7/6spEV7czhnZc9RM/woz1AY+/Vpd8/h2HFMwJSdTliu7f/yr1A6vDdJfKICZsShqsYpEQbdhg8AFQ==}
+  /devtools-protocol@0.0.1001819:
+    resolution: {integrity: sha512-G6OsIFnv/rDyxSqBa2lDLR6thp9oJioLsb2Gl+LbQlyoA9/OBAkrTU9jiCcQ8Pnh7z4d6slDiLaogR5hzgJLmQ==}
     dev: false
 
   /end-of-stream@1.4.4:
@@ -293,13 +293,13 @@ packages:
       once: 1.4.0
     dev: false
 
-  /puppeteer-core@15.5.0:
-    resolution: {integrity: sha512-5Q8EmF++MARczJD1JcRehVePlctxGG2TFHSxdCV8NqPOk44/cMySmZw2nETn+lwUOyp0L9afosMFTnT4KgmWgw==}
+  /puppeteer-core@14.4.1:
+    resolution: {integrity: sha512-ykeQf8vAFVziQWsGu0AQ782KZgFlcQS/wDwbBJuKyR7zdb+rIKEBLpyeE46KUhbw/TjNyhb7MPFb/qrO9xIs0A==}
     engines: {node: '>=14.1.0'}
     dependencies:
       cross-fetch: 3.1.5
       debug: 4.3.4
-      devtools-protocol: 0.0.1019158
+      devtools-protocol: 0.0.1001819
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.1
       pkg-dir: 4.2.0
@@ -308,7 +308,7 @@ packages:
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
-      ws: 8.8.0
+      ws: 8.7.0
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -396,8 +396,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: false
 
-  /ws@8.8.0:
-    resolution: {integrity: sha512-JDAgSYQ1ksuwqfChJusw1LSJ8BizJ2e/vVu5Lxjq3YvNJNlROv1ui4i+c/kUUrPheBvQl4c5UbERhTwKa6QBJQ==}
+  /ws@8.7.0:
+    resolution: {integrity: sha512-c2gsP0PRwcLFzUiA8Mkr37/MI7ilIlHQxaEAtd0uNMbVMoy8puJyafRlm0bV9MbGSabUPeLrRRaqIBcFcA2Pqg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
