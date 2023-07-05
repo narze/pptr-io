@@ -6,22 +6,22 @@ settings:
 
 dependencies:
   '@sparticuz/chrome-aws-lambda':
-    specifier: 16.1.0
-    version: 16.1.0(puppeteer-core@16.1.0)
+    specifier: 15.5.0
+    version: 15.5.0(puppeteer-core@15.5.0)
   puppeteer-core:
-    specifier: 16.1.0
-    version: 16.1.0
+    specifier: 15.5.0
+    version: 15.5.0
 
 packages:
 
-  /@sparticuz/chrome-aws-lambda@16.1.0(puppeteer-core@16.1.0):
-    resolution: {integrity: sha512-hBfkD1jTGjz1GD1qyj1iPYEyG7fKWYMkSb+EfJJeuffi0JJG83dBR4b+adlxZ9OI7FNOBS0rGn45UKFp71q8EA==}
+  /@sparticuz/chrome-aws-lambda@15.5.0(puppeteer-core@15.5.0):
+    resolution: {integrity: sha512-TT3Q6ui6whXuPczOWISIuyoYHhG7WsTSicVJZ6x37sQb3+H++rCGKeQVmoYzWr+54g4ryfg5X2gBSweXRI8GMw==}
     engines: {node: '>= 14'}
     deprecated: '@sparticuz/chrome-aws-lambda is deprecated. Please migrate to @sparticuz/chromium'
     peerDependencies:
-      puppeteer-core: 16.1.0
+      puppeteer-core: 15.5.0
     dependencies:
-      puppeteer-core: 16.1.0
+      puppeteer-core: 15.5.0
       tar-fs: 2.1.1
     dev: false
 
@@ -293,8 +293,8 @@ packages:
       once: 1.4.0
     dev: false
 
-  /puppeteer-core@16.1.0:
-    resolution: {integrity: sha512-Eu9FCqdWU2PU/RY53sa+JTsbFiQg5fJyaHX5DP0WZ4+lVLVdMfR9dwPimRkSl9NEcArm7lZMpiDlVCYelE90ZA==}
+  /puppeteer-core@15.5.0:
+    resolution: {integrity: sha512-5Q8EmF++MARczJD1JcRehVePlctxGG2TFHSxdCV8NqPOk44/cMySmZw2nETn+lwUOyp0L9afosMFTnT4KgmWgw==}
     engines: {node: '>=14.1.0'}
     dependencies:
       cross-fetch: 3.1.5
@@ -308,7 +308,7 @@ packages:
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
-      ws: 8.8.1
+      ws: 8.8.0
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -396,8 +396,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: false
 
-  /ws@8.8.1:
-    resolution: {integrity: sha512-bGy2JzvzkPowEJV++hF07hAD6niYSr0JzBNo/J29WsB57A2r7Wlc1UFcTR9IzrPvuNVO4B8LGqF8qcpsVOhJCA==}
+  /ws@8.8.0:
+    resolution: {integrity: sha512-JDAgSYQ1ksuwqfChJusw1LSJ8BizJ2e/vVu5Lxjq3YvNJNlROv1ui4i+c/kUUrPheBvQl4c5UbERhTwKa6QBJQ==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
