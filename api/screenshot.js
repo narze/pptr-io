@@ -1,6 +1,7 @@
 const chrome = require("@sparticuz/chrome-aws-lambda")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
+const LOCAL = ["production", "preview"].includes(process.env.VERCEL_ENV)
 
 module.exports = async (req, res) => {
   try {
@@ -18,7 +19,9 @@ module.exports = async (req, res) => {
       ? screenshotFileType
       : "png"
 
-    const options = ["production", "preview"].includes(process.env.VERCEL_ENV)
+    const darkMode = !!req.query.dark
+
+    const options = LOCAL
       ? {
           args: chrome.args,
           executablePath: await chrome.executablePath,
@@ -37,6 +40,16 @@ module.exports = async (req, res) => {
 
     const page = await browser.newPage()
 
+    await page.emulateMediaFeatures([
+      { name: "prefers-reduced-motion", value: "true" },
+    ])
+
+    if (darkMode) {
+      await page.emulateMediaFeatures([
+        { name: "prefers-color-scheme", value: "dark" },
+      ])
+    }
+
     await page.setViewport({
       width: Number(req.query.width) || 1920,
       height: Number(req.query.height) || 1080,
@@ -48,16 +61,26 @@ module.exports = async (req, res) => {
     })
     const file = await page.screenshot({
       type: fileType,
-      fullPage: fullPage,
+      // fullPage: fullPage,
+      clip: {
+        x: Number(req.query.x) || 0,
+        y: Number(req.query.y) || 0,
+        width: Number(req.query.width) || 1920,
+        height: Number(req.query.height) || 1080,
+      },
     })
     await browser.close()
 
     res.statusCode = 200
     res.setHeader("Content-Type", `image/${fileType}`)
-    res.setHeader(
-      "Cache-Control",
-      `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
-    )
+
+    if (!LOCAL) {
+      res.setHeader(
+        "Cache-Control",
+        `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
+      )
+    }
+
     res.end(file)
   } catch (err) {
     console.log(err)
