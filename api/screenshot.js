@@ -1,8 +1,4 @@
-// const puppeteer = require("puppeteer-core")
-// const chromium = require("@sparticuz/chromium-min")
-// const chrome = require("chrome-aws-lambda")
 const chrome = require("@sparticuz/chrome-aws-lambda")
-// const playwright = require("playwright-core")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
 
@@ -22,21 +18,7 @@ module.exports = async (req, res) => {
       ? screenshotFileType
       : "png"
 
-    // browser = await chromium.puppeteer.launch({
-    //   args: chromium.args,
-    //   defaultViewport: chromium.defaultViewport,
-    //   executablePath: await chromium.executablePath,
-    //   headless: chromium.headless,
-    //   ignoreHTTPSErrors: true,
-    // })
-
-    // let page = await browser.newPage()
-
-    // await page.goto(event.url || "https://example.com")
-
-    // result = await page.title()
-
-    const options = process.env.VERCEL
+    const options = ["production", "preview"].includes(process.env.VERCEL_ENV)
       ? {
           args: chrome.args,
           executablePath: await chrome.executablePath,
@@ -52,29 +34,14 @@ module.exports = async (req, res) => {
               : "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
         }
     const browser = await chrome.puppeteer.launch(options)
-    // const browser = await puppeteer.launch(options)
-
-    // Chromium-min
-    // const browser = await puppeteer.launch({
-    //   args: chromium.args,
-    //   // executablePath:
-    //   //   process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
-    //   executablePath: await chromium.executablePath(
-    //     "https://github.com/Sparticuz/chromium/releases/download/v114.0.0/chromium-v114.0.0-pack.tar"
-    //   ),
-    //   headless: chromium.headless,
-    //   ignoreHTTPSErrors: true,
-    //   // headless: true,
-    //   // ...more config options
-    // })
 
     const page = await browser.newPage()
 
-    // await page.setViewportSize({
-    //   width: Number(req.query.width) || 1920,
-    //   height: Number(req.query.height) || 1080,
-    //   deviceScaleFactor: Number(req.query.deviceScaleFactor) || 1,
-    // })
+    await page.setViewport({
+      width: Number(req.query.width) || 1920,
+      height: Number(req.query.height) || 1080,
+      deviceScaleFactor: Number(req.query.deviceScaleFactor) || 2,
+    })
 
     await page.goto(url, {
       waitUntil: "networkidle2",
