@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer-core")
 // const chromium = require("@sparticuz/chromium-min")
-const chromium = require("chrome-aws-lambda")
+const chrome = require("chrome-aws-lambda")
 // const playwright = require("playwright-core")
 
 const ALLOWED_FILE_TYPES = ["jpeg", "webp", "png"]
